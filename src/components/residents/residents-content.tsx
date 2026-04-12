@@ -2,16 +2,14 @@
 
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { User, Grid3X3, Users } from "lucide-react";
+import { Grid3X3, Users } from "lucide-react";
 import { startups } from "@/data/startups";
 import { StaggerChildren, StaggerItem } from "@/components/animation/stagger-children";
 import { CTASection } from "@/components/layout/cta-section";
+import TeamShowcase from "@/components/ui/team-showcase";
+import { batchOneFounders } from "@/data/founders";
 
 export function ResidentsContent() {
-  const allFounders = startups.flatMap((s) =>
-    s.founders.map((f) => ({ ...f, startup: s.name, batch: s.batch }))
-  );
-
   return (
     <>
       <section className="pt-32 pb-20 bg-[#FAFAF8]">
@@ -70,20 +68,9 @@ export function ResidentsContent() {
             </TabsContent>
 
             <TabsContent value="founders" id="founders">
-              <StaggerChildren className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                {allFounders.map((f, i) => (
-                  <StaggerItem key={`${f.name}-${i}`}>
-                    <div className="p-8 bg-white rounded-2xl border border-[#EEEEE8] hover:border-orange-200 hover:shadow-sm transition-all text-center">
-                      <div className="w-20 h-20 rounded-full bg-gradient-to-br from-orange-50 to-gray-100 flex items-center justify-center mx-auto mb-5">
-                        <User className="h-9 w-9 text-gray-300" />
-                      </div>
-                      <h4 className="font-display font-bold text-[#1A1A1A] text-sm tracking-tight">{f.name}</h4>
-                      <span className="text-[11px] text-gray-400 block mt-1">{f.role}</span>
-                      <span className="text-[11px] text-orange-500 font-medium block mt-2">{f.startup}</span>
-                    </div>
-                  </StaggerItem>
-                ))}
-              </StaggerChildren>
+              <div className="flex justify-center">
+                <TeamShowcase members={batchOneFounders} />
+              </div>
             </TabsContent>
           </Tabs>
         </div>
