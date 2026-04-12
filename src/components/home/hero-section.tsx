@@ -3,16 +3,19 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { SpinningRingsBackground } from "@/components/ui/waitlist-hero";
 
 export function HeroSection() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0A0A0A]">
-      {/* Subtle radial gradient at center */}
-      <div className="absolute inset-0">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-gradient-radial from-white/[0.03] to-transparent" />
-      </div>
+      {/* Spinning concentric rings background */}
+      <SpinningRingsBackground />
 
-      <div className="relative z-10 text-center px-6 max-w-5xl mx-auto">
+      {/* Bottom gradient fade — blends rings into the dark page below */}
+      <div className="absolute inset-0 pointer-events-none z-[1]"
+        style={{ background: "linear-gradient(to top, #0A0A0A 8%, rgba(10,10,10,0.6) 35%, transparent 100%)" }} />
+
+      <div className="relative z-10 text-center px-6 max-w-5xl mx-auto" style={{ zIndex: 10 }}>
         {/* Badge */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}

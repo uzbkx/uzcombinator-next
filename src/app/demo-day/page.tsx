@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { DemoBlocks } from "@/components/demo-day/demo-blocks";
 import { CTASection } from "@/components/layout/cta-section";
+import { PhotoGallery } from "@/components/ui/gallery";
 
 export default function DemoDayPage() {
   return (
@@ -32,6 +33,18 @@ export default function DemoDayPage() {
       </section>
 
       <DemoBlocks />
+
+      {/* Photo gallery — content coming soon */}
+      <section className="bg-[#FAFAF8] pb-8">
+        <div className="max-w-[1200px] mx-auto px-6">
+          <PhotoGallery
+            subtitle="Batch 1 — Demo Day"
+            title={<>Eng yaxshi <span className="text-orange-500">lahzalar</span></>}
+            buttonLabel="Barcha rasmlar"
+            animationDelay={0.3}
+          />
+        </div>
+      </section>
 
       <CTASection
         title="Demo Kun'ga tayyormisiz?"

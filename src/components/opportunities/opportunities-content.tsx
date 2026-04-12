@@ -1,49 +1,61 @@
 "use client";
 
-import { DollarSign, TrendingUp, Trophy, Globe, Code } from "lucide-react";
-import { FadeIn } from "@/components/animation/fade-in";
 import { AnimatedCounter } from "@/components/animation/animated-counter";
 import { CTASection } from "@/components/layout/cta-section";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import Image from "next/image";
 import { WorldMap } from "@/components/ui/map";
+import { TextParallaxContent, ParallaxBlockContent } from "@/components/ui/text-parallax-content-scroll";
+import { FadeIn } from "@/components/animation/fade-in";
 
-const benefits = [
+const opportunities = [
   {
-    icon: DollarSign,
+    subheading: "Moliyaviy qo'llab-quvvatlash",
+    heading: "$1,000 Stipendiya",
     title: "$1,000 stipendiya va ish sharoitlari",
     desc: "Har bir tanlangan asoschi 1,000 AQSh dollari stipendiyasi, zamonaviy coworking maydoniga kirish va zarur texnik vositalarni oladi.",
-    color: "text-orange-500",
-    image: "/opportunities/stipend.png",
+    tag: "Batch 2 uchun",
+    imgUrl: "/opportunities/stipend.png",
   },
   {
-    icon: TrendingUp,
-    title: "Mentorlar va Trekkerlar",
+    subheading: "Shaxsiy yo'nalish",
+    heading: "Mentorlar va Trekkerlar",
+    title: "Har bir startap uchun shaxsiy mentor",
     desc: "Har bir startapga shaxsiy mentor va trekker biriktiriladi. Ular mahsulot strategiyasi, texnologiya va o'sish bo'yicha kundalik yo'l-yo'riq berib, asoschillarni real natijaga yetaklaydi.",
-    color: "text-emerald-500",
-    image: "/opportunities/mentors.png",
+    tag: "40+ ekspert",
+    imgUrl: "/opportunities/mentors.png",
   },
   {
-    icon: Trophy,
-    title: "Raqobatbardosh muhit",
+    subheading: "Raqobat muhiti",
+    heading: "Raqobatbardosh Ekotizim",
+    title: "45 kun ichida eng tez o'sish",
     desc: "45 kun davomida builderlar metriklar orqali o'lchanadigan, bir-biridan o'rganadigan va tez qaror qabul qiladigan raqobatbardosh ekotizimda ishlaydi.",
-    color: "text-blue-500",
-    image: "/opportunities/competitive.png",
+    tag: "Intensiv dastur",
+    imgUrl: "/opportunities/competitive.png",
   },
   {
-    icon: Globe,
-    title: "Global fikrlash va investor-tayyor pitch",
+    subheading: "Global miqyos",
+    heading: "Investor-tayyor Pitch",
+    title: "Global fikrlash va investor-tayyor taqdimot",
     desc: "Biz asoschilarga global nuqtai nazarni rivojlantirishga yordam beramiz va ularni investorlar oldida aniq va ishonchli taqdimot qilishga o'rgatamiz.",
-    color: "text-violet-500",
-    image: "/opportunities/pitch.png",
+    tag: "Demo Day",
+    imgUrl: "/opportunities/pitch.png",
   },
   {
-    icon: Code,
-    title: "Eng kuchlilar bilan bir xonada bo'ling",
+    subheading: "Hamjamiyat",
+    heading: "Kuchlilar bilan bir xonada",
+    title: "Tajribali asoschillar, investorlar, liderlar",
     desc: "Siz yolg'iz qurmaydigan bo'lasiz. Tajribali asoschillar, investorlar va sanoat liderlaridan iborat jamoada ishlaysiz — ularning tajribasi va tarmog'idan bevosita foydalanasiz.",
-    color: "text-rose-500",
-    image: "/opportunities/tech.png",
+    tag: "Network",
+    imgUrl: "/opportunities/tech.png",
+  },
+  {
+    subheading: "Investitsiya",
+    heading: "Investitsiya Imkoniyati",
+    title: "Demo Day'da to'g'ridan-to'g'ri investorlar bilan",
+    desc: "Dastur yakunida eng yaxshi startaplar Demo Day'da faol investorlar oldida pitch taqdim etadi. Bu O'zbekistondagi eng yirik startup investitsiya platformasi.",
+    tag: "Demo Day",
+    imgUrl: "/opportunities/investment.png",
   },
 ];
 
@@ -65,27 +77,25 @@ export function OpportunitiesContent() {
         </div>
       </section>
 
-      {/* Benefit Cards */}
-      <section className="pb-32 bg-[#FAFAF8]">
-        <div className="max-w-[1100px] mx-auto px-6 space-y-24">
-          {benefits.map((b, i) => (
-            <FadeIn key={b.title} delay={i * 0.08}>
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                <div className={i % 2 !== 0 ? "lg:order-2" : ""}>
-                  <b.icon className={`h-7 w-7 mb-6 ${b.color}`} />
-                  <h3 className="font-display text-2xl md:text-3xl font-bold text-[#1A1A1A] mb-4 tracking-tight">
-                    {b.title}
-                  </h3>
-                  <p className="text-gray-400 text-lg leading-relaxed">{b.desc}</p>
-                </div>
-                <div className={`aspect-[4/3] rounded-2xl overflow-hidden relative ${i % 2 !== 0 ? "lg:order-1" : ""}`}>
-                  <Image src={b.image} alt={b.title} fill className="object-cover" />
-                </div>
-              </div>
-            </FadeIn>
-          ))}
-        </div>
-      </section>
+      {/* Parallax Benefit Scroll */}
+      <div className="bg-[#FAFAF8]">
+        {opportunities.map((o) => (
+          <TextParallaxContent
+            key={o.heading}
+            imgUrl={o.imgUrl}
+            subheading={o.subheading}
+            heading={o.heading}
+          >
+            <ParallaxBlockContent
+              title={o.title}
+              desc={o.desc}
+              tag={o.tag}
+              href="/apply"
+              buttonLabel="Ariza topshirish"
+            />
+          </TextParallaxContent>
+        ))}
+      </div>
 
       {/* Bridge to Silicon Valley */}
       <section className="py-32 bg-[#0A0A0A]">
@@ -122,20 +132,19 @@ export function OpportunitiesContent() {
               lineColor="#FF6600"
               dots={[
                 {
+                  // StarX — Menlo Park / Silicon Valley
+                  start: { lat: 41.2995, lng: 69.2401, label: "Toshkent" },
+                  end:   { lat: 37.4530, lng: -122.1817, label: "StarX" },
+                },
+                {
+                  // Alchemist Accelerator — San Francisco
+                  start: { lat: 41.2995, lng: 69.2401, label: "Toshkent" },
+                  end:   { lat: 37.7749, lng: -122.4194, label: "Alchemist" },
+                },
+                {
+                  // Silicon Valley hub (San Jose) — general SV connection
                   start: { lat: 41.2995, lng: 69.2401, label: "Toshkent" },
                   end:   { lat: 37.3382, lng: -121.8863, label: "Silicon Valley" },
-                },
-                {
-                  start: { lat: 41.2995, lng: 69.2401, label: "Toshkent" },
-                  end:   { lat: 40.7128, lng: -74.006, label: "New York" },
-                },
-                {
-                  start: { lat: 41.2995, lng: 69.2401, label: "Toshkent" },
-                  end:   { lat: 51.5074, lng: -0.1278, label: "London" },
-                },
-                {
-                  start: { lat: 41.2995, lng: 69.2401, label: "Toshkent" },
-                  end:   { lat: 25.2048, lng: 55.2708, label: "Dubai" },
                 },
               ]}
             />
