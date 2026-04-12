@@ -7,6 +7,7 @@ const footerLinks = {
     { label: "Opportunities", href: "/opportunities" },
     { label: "Demo Day", href: "/demo-day" },
     { label: "Apply", href: "/apply" },
+    { label: "FAQ", href: "/faq" },
   ],
   resources: [
     { label: "Intervyular", href: "/resources#interviews" },
