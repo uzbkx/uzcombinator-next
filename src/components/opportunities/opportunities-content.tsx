@@ -5,7 +5,7 @@ import { CTASection } from "@/components/layout/cta-section";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { WorldMap } from "@/components/ui/map";
-import { TextParallaxContent, ParallaxBlockContent } from "@/components/ui/text-parallax-content-scroll";
+import { SpeedrunGrid } from "@/components/ui/speedrun-grid";
 import { FadeIn } from "@/components/animation/fade-in";
 
 const opportunities = [
@@ -63,39 +63,34 @@ export function OpportunitiesContent() {
   return (
     <>
       {/* Hero */}
-      <section className="pt-32 pb-20 bg-[#FAFAF8]">
-        <div className="max-w-[1200px] mx-auto px-6 text-center">
-          <span className="inline-block mb-6 text-[11px] font-semibold tracking-[0.2em] text-orange-500 uppercase">
+      <section className="pt-36 pb-24 bg-[#0A0A0A]">
+        <div className="max-w-[1200px] mx-auto px-6">
+          <span className="inline-block mb-6 text-[11px] font-semibold tracking-[0.25em] text-orange-500 uppercase">
             Imkoniyatlar
           </span>
-          <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-[#1A1A1A] mb-6 tracking-tight">
-            Imkoniyatlar
+          <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 tracking-tight leading-[1.02] max-w-2xl">
+            Sizni nima kutmoqda
           </h1>
-          <p className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
-            UZ Combinator dasturida sizni nimalar kutmoqda.
+          <p className="text-gray-500 text-lg md:text-xl max-w-xl leading-relaxed">
+            45 kunlik dastur davomida asoschilarga beriladigan imkoniyatlar.
           </p>
         </div>
       </section>
 
-      {/* Parallax Benefit Scroll */}
-      <div className="bg-[#FAFAF8]">
-        {opportunities.map((o) => (
-          <TextParallaxContent
-            key={o.heading}
-            imgUrl={o.imgUrl}
-            subheading={o.subheading}
-            heading={o.heading}
-          >
-            <ParallaxBlockContent
-              title={o.title}
-              desc={o.desc}
-              tag={o.tag}
-              href="/apply"
-              buttonLabel="Ariza topshirish"
-            />
-          </TextParallaxContent>
-        ))}
-      </div>
+      {/* Speedrun-style grid */}
+      <SpeedrunGrid
+        subheading="Imkoniyatlar"
+        heading="UZ Combinator sizga nima beradi?"
+        cta="Ariza topshirish"
+        href="/apply"
+        cards={opportunities.map((o) => ({
+          tag: o.tag,
+          title: o.title,
+          description: o.desc,
+          imgUrl: o.imgUrl,
+          href: "/apply",
+        }))}
+      />
 
       {/* Bridge to Silicon Valley */}
       <section className="py-32 bg-[#0A0A0A]">
