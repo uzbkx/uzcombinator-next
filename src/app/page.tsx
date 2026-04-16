@@ -1,4 +1,5 @@
 import { HeroSection } from "@/components/home/hero-section";
+import { QuoteSection } from "@/components/home/quote-section";
 import { OriginStory } from "@/components/home/origin-story";
 import { StatsBar } from "@/components/home/stats-bar";
 import { PartnerStrip } from "@/components/home/partner-strip";
@@ -12,6 +13,7 @@ export default function HomePage() {
   return (
     <>
       <HeroSection />
+      <QuoteSection />
       <OriginStory />
       <StatsBar />
       <PartnerStrip />
